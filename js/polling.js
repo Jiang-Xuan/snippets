@@ -17,22 +17,22 @@ const _noop = () => {};
 /**
  * @desc
  * ## 轮询一个异步操作
- * 
+ *
  * 类分为四种状态
- * 
+ *
  * 1. **loading 态** 异步操作正在处理中, 还未处理完毕
  * 2. **成功态** 异步操作成功, 处理完毕
  * 3. **失败态** 异步操作失败, 处理完毕
  * 4. **错误态** 异步请求失败, 这里的请求失败不一定是网络错误, 对于 action 异步方法 **抛出的 error** 或者 **reject** 都会被捕获, 然后进入该状态
- * 
+ *
  * 从 loading 态 -> 成功态, 失败态, 错误态 都会停止轮询操作
  * 从 loading 态 -> loading 态, 会继续轮询
- * 
+ *
  * ### Example
- * 
+ *
  * 1. 用户订阅微信公众号的消息需要首先关注微信公众号, 当用户未关注公众号的时候, 弹出二维码提示用户关注公众号, 然后后台轮询用户是否已经完成关注公众号操作
  * 1.1 用户可能不关注公众号, 直接关闭二维码, 这时候需要中断轮询
- * 
+ *
  * ```js
  * const polling = new Polling((data) => fetch('/api/example', data), { foo: 2 }, {
  *   isLoadingState(data) {
@@ -55,7 +55,7 @@ const _noop = () => {};
  *   }
  * })
  * ```
- * 
+ *
  * @template ActionResType, ParamsType
  */
 export class Polling {

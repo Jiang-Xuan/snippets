@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true, // 自动 format
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // 配置 vscode 的默认 formatter
+  "editor.rulers": [100] // 配置编辑器的 ruler, 视觉上的优化, 可以及时看到自己是不是超过了 100 的 printWidth
+}
