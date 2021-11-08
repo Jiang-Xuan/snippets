@@ -1,4 +1,5 @@
-import _noop from 'lodash/noop';
+// import _noop from 'lodash/noop';
+const _noop = () => {};
 
 /**
  * @template T
@@ -16,6 +17,16 @@ import _noop from 'lodash/noop';
 /**
  * @desc
  * ## 轮询一个异步操作
+ * 
+ * 类分为四种状态
+ * 
+ * 1. **loading 态** 异步操作正在处理中, 还未处理完毕
+ * 2. **成功态** 异步操作成功, 处理完毕
+ * 3. **失败态** 异步操作失败, 处理完毕
+ * 4. **错误态** 异步请求失败, 这里的请求失败不一定是网络错误, 对于 action 异步方法 **抛出的 error** 或者 **reject** 都会被捕获, 然后进入该状态
+ * 
+ * 从 loading 态 -> 成功态, 失败态, 错误态 都会停止轮询操作
+ * 从 loading 态 -> loading 态, 会继续轮询
  * 
  * ### Example
  * 
@@ -86,7 +97,7 @@ export class Polling {
     /** END private property */
   }
 
-  poll() {
+  _poll() {
     if (this._isAbort) {
       return;
     }
@@ -96,7 +107,7 @@ export class Polling {
         if (this.isLoadingState(data)) {
           // loading 中
           this.onLoading(data);
-          setTimeout(() => this.poll(), this.interval);
+          setTimeout(() => this._poll(), this.interval);
           return;
         }
         this.abort();
@@ -114,14 +125,21 @@ export class Polling {
       });
   }
 
+  /**
+   * 开始运行
+   * @returns
+   */
   run() {
     if (this._polling) {
       return;
     }
     this._polling = true;
-    this.poll();
+    this._poll();
   }
 
+  /**
+   * 手动停止
+   */
   abort() {
     this._isAbort = true;
   }
