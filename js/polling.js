@@ -81,16 +81,16 @@ export class Polling {
     },
   ) {
     /** private property */
-    this.action = action;
-    this.params = params;
-    this.interval = interval;
-    this.isLoadingState = isLoadingState;
-    this.isSuccessState = isSuccessState;
-    this.isFailedState = isFailedState;
-    this.onLoading = onLoading;
-    this.onSuccess = onSuccess;
-    this.onFailed = onFailed;
-    this.onReqError = onReqError;
+    this._action = action;
+    this._params = params;
+    this._interval = interval;
+    this._isLoadingState = isLoadingState;
+    this._isSuccessState = isSuccessState;
+    this._isFailedState = isFailedState;
+    this._onLoading = onLoading;
+    this._onSuccess = onSuccess;
+    this._onFailed = onFailed;
+    this._onReqError = onReqError;
 
     this._lastCallTimestamp = 0;
     this._isAbort = false;
@@ -103,26 +103,26 @@ export class Polling {
       return;
     }
     this._lastCallTimestamp = +new Date();
-    this.action(this.params)
+    this._action(this._params)
       .then(data => {
-        if (this.isLoadingState(data)) {
+        if (this._isLoadingState(data)) {
           // loading 中
-          this.onLoading(data);
-          setTimeout(() => this._poll(), this.interval);
+          this._onLoading(data);
+          setTimeout(() => this._poll(), this._interval);
           return;
         }
         this.abort();
-        if (this.isSuccessState(data)) {
-          this.onSuccess(data);
+        if (this._isSuccessState(data)) {
+          this._onSuccess(data);
         }
-        if (this.isFailedState(data)) {
+        if (this._isFailedState(data)) {
           // 调用外部 failed
-          this.onFailed(data);
+          this._onFailed(data);
         }
       })
       .catch(e => {
         this.abort();
-        this.onReqError(e);
+        this._onReqError(e);
       });
   }
 
