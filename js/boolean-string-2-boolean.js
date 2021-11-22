@@ -1,7 +1,5 @@
 /**
- * 转换 boolean 字符串成 boolean 对象, 也就是 'true', 'false' 字符串转换成 true, false boolean字面量
- *
- * 当参数是 undefined 或者是 null 的时候, 返回 false
+ * ## 转换 boolean 字符串成 boolean 对象, 也就是 'true', 'false' 字符串转换成 true, false boolean字面量
  *
  * @example
  * 1. 输入 'true', 输出 true
