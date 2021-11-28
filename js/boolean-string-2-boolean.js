@@ -22,10 +22,6 @@
  */
 
 function booleanString2Boolean(booleanString) {
-  if (booleanString === null || booleanString === undefined) {
-    return false;
-  }
-
   if (booleanString === 'true') {
     return true;
   }
