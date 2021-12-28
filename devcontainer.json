@@ -1,6 +1,0 @@
-{
-  "extensions": ["esbenp.prettier-vscode", "editorconfig.editorconfig"],
-  "settings": {
-    "workbench.colorTheme": "Visual Studio Dark"
-  }
-}
