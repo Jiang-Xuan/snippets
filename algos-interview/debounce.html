@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>debounce</title>
+  </head>
+  <body>
+    <button id="btn">debounce</button>
+    <div id="out"></div>
+    <script>
+      function debounce(fn, wait, immediate) {
+        let timer = null;
+
+        return function (...args) {
+          if (timer) {
+            window.clearTimeout(timer);
+          }
+
+          if (immediate && !timer) {
+            fn.call(this, ...args);
+          }
+
+          timer = setTimeout(fn.bind(this, ...args), wait);
+        };
+      }
+    </script>
+    <script>
+      const btn = document.getElementById('btn');
+      const out = document.getElementById('out');
+      let clickTimes = 0;
+      btn.addEventListener(
+        'click',
+        debounce(
+          () => {
+            clickTimes += 1;
+            out.textContent = clickTimes;
+          },
+          1000,
+          true,
+        ),
+      );
+    </script>
+  </body>
+</html>

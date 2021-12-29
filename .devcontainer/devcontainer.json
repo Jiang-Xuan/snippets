@@ -13,7 +13,8 @@
   // Set *default* container specific settings.json values on container create.
   "settings": {
     "workbench.colorTheme": "Visual Studio Dark",
-    "terminal.integrated.defaultProfile.*": "zsh"
+    "terminal.integrated.defaultProfile.*": "zsh",
+    "editor.tabSize": 2
   },
 
   // Add the IDs of extensions you want installed when the container is created.

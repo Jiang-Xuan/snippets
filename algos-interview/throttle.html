@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>throttle</title>
+  </head>
+  <body>
+    <button id="btn">throttle</button>
+    <div id="out"></div>
+    <script>
+      function throttle(fn, wait, immediate) {
+        let pre = 0;
+
+        return function (...args) {
+          const now = Date.now();
+
+          if (now - pre >= wait) {
+            fn.call(this, ...args);
+            pre = now;
+          }
+        };
+      }
+    </script>
+    <script>
+      const btn = document.getElementById('btn');
+      const out = document.getElementById('out');
+      let clickTimes = 0;
+      btn.addEventListener(
+        'click',
+        throttle(
+          () => {
+            clickTimes += 1;
+            out.textContent = clickTimes;
+          },
+          1000,
+          true,
+        ),
+      );
+    </script>
+  </body>
+</html>

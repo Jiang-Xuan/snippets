@@ -1,0 +1,27 @@
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "分类存储自己的代码片段",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jiang-Xuan/snippets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jiang-Xuan/snippets/issues"
+  },
+  "homepage": "https://github.com/Jiang-Xuan/snippets#readme",
+  "devDependencies": {
+    "@types/jest": "27.0.1",
+    "jest": "27.0.0"
+  },
+  "dependencies": {
+    "serve": "^13.0.2"
+  }
+}
