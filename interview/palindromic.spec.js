@@ -12,6 +12,6 @@ describe.only('longestPalindromic', () => {
   });
 
   test.only('center', () => {
-    expect(center.longestPalindromic('abcbaab')).toEqual('abcba');
-  })
+    expect(center.longestPalindromic('32112345678998765')).toEqual('5678998765');
+  });
 });
