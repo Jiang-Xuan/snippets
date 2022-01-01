@@ -1,4 +1,4 @@
-const { isPalindromic, longestPalindromic, center } = require('./palindromic');
+const { isPalindromic, longestPalindromic, center, dp } = require('./palindromic');
 
 describe('isPalindromic', () => {
   test.only('yes', () => {
@@ -6,12 +6,18 @@ describe('isPalindromic', () => {
   });
 });
 
-describe.only('longestPalindromic', () => {
+describe('longestPalindromic', () => {
   test('yes', () => {
     expect(longestPalindromic('abcbaab')).toEqual('abcba');
   });
 
   test.only('center', () => {
     expect(center.longestPalindromic('32112345678998765')).toEqual('5678998765');
+  });
+});
+
+describe.only('dp', () => {
+  test('yes', () => {
+    expect(dp.longestPalindromic('32112345678998765')).toEqual('5678998765');
   });
 });
